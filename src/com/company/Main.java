@@ -59,7 +59,7 @@ public class Main {
                         JOptionPane.INFORMATION_MESSAGE);
                 try{
                     int size = Integer.parseInt(value);
-                    dane.add(new RealData(size));
+                    dane.add(new ProxyData(size)); // RealData
                 } catch(Exception ex) {
                     JOptionPane.showMessageDialog(frame,"Podaj liczbę");
                 };
