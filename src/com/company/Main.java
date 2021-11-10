@@ -52,16 +52,21 @@ public class Main {
                 try{
                     int size = Integer.parseInt(value);
                     dane.add(new RealData(size));
-                } catch(Exception ex) { };
+                } catch(Exception ex) {
+                    JOptionPane.showMessageDialog(frame,"Podaj liczbę");
+                };
             }
         });
+
         del.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 int idx = list.getSelectedIndex();
                 try{
                     dane.remove(idx);
-                } catch(Exception ex) { };
+                } catch(Exception ex) {
+                    JOptionPane.showMessageDialog(frame,"Wybierz tablice którą chcesz usunąć");
+                };
             }
         });
 
