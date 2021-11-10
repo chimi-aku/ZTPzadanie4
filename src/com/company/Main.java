@@ -22,7 +22,12 @@ public class Main {
         scrollPane.setBorder(BorderFactory.createTitledBorder(" Tablice: "));
         splitPane.setLeftComponent(scrollPane);
 
-        JTable table = new JTable(/* ... tutaj dodaj adapter: TableModel ... */);
+        Adapter adapter = new Adapter(new RealData(0));
+
+        JTable table = new JTable(adapter);
+        scrollPane = new JScrollPane(table);
+        table.getColumnModel().getColumn(0).setHeaderValue("ID");
+        table.getColumnModel().getColumn(1).setHeaderValue("Zawartość");
         scrollPane = new JScrollPane(table);
         scrollPane.setBorder(BorderFactory.createTitledBorder(" Zawartość: "));
         splitPane.setRightComponent(scrollPane);
@@ -32,8 +37,11 @@ public class Main {
         JMenuBar bar = new JMenuBar();
         JButton add = new JButton("Dodaj tablicę");
         JButton del = new JButton("Usuń tablicę");
+        JButton copy = new JButton("Kopiuj tablicę");
+
         bar.add(add);
         bar.add(del);
+        bar.add(copy);
 
         frame.setJMenuBar(bar);
 
@@ -70,12 +78,22 @@ public class Main {
             }
         });
 
+        copy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    dane.add(new CopyData((Data) list.getSelectedValue()));
+                } catch(Exception ex) {
+                    JOptionPane.showMessageDialog(frame,"Wybierz tablice którą chcesz skopiować");
+                };
+            }
+        });
+
         // zmiana wyboru na liście powoduje odświeżenie tabeli
         list.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 int idx = list.getSelectedIndex();
                 if (idx >= 0) {
-                    /* ... */
+                    adapter.setContent((Data) list.getSelectedValue());
                 }
             }
         });
