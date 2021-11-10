@@ -1,32 +1,38 @@
 package com.company;
 
 public class CopyData implements Data {
-    private Data orginał;
-    private Data kopia;
+    private Data original;
+    private Data copy;
 
-    public CopyData(Data orginał) {
-        this.orginał = orginał;
-        this.kopia = new RealData(orginał.size());
+    public CopyData(Data original) {
+        this.original = original;
+        this.copy = new RealData(original.size());
     }
+
 
     @Override
     public int get(int idx) {
-        return orginał != null ? orginał.get(idx) : kopia.get(idx);
+        if(original != null)
+            return original.get(idx);
+        else
+           return copy.get(idx);
     }
 
     @Override
     public void set(int idx, int value) {
-        if (orginał != null){
-            for (int i = 0; i < orginał.size(); i++) {
-                kopia.set(i, orginał.get(i));
-            }
-            orginał=null;
+        if( original != null) {
+            for (int i = 0; i < original.size(); i++)
+                copy.set(i, original.get(i));
+
+            original = null;
         }
-        kopia.set(idx, value);
+
+        copy.set(idx, value);
     }
 
     @Override
     public int size() {
-        return kopia.size();
+        return copy.size();
     }
 }
+
