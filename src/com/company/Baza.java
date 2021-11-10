@@ -4,21 +4,23 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class Baza extends AbstractListModel{
-    private ArrayList<Data> ar = new ArrayList<Data>();
+    private ArrayList<Data> array = new ArrayList<Data>();
 
     public void add(Data tab){
-        /* ... */
+        array.add(tab);
+        fireIntervalAdded(array, array.size(), array.size());
     }
 
     public void remove(int idx){
-        /* ... */
+        array.remove(getElementAt(idx));
+        fireIntervalRemoved(array, array.size(), array.size());
     }
 
     public int getSize() {
-        return 0;
+        return array.size();
     }
 
     public Object getElementAt(int index) {
-        return null;
+        return array.get(index);
     }
 }
