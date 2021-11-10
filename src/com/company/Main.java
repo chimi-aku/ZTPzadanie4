@@ -16,7 +16,7 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JSplitPane splitPane = new JSplitPane();
 
-        final JList list = new JList(dane);
+        final JList<Data> list = new JList<>(dane);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(list);
         scrollPane.setBorder(BorderFactory.createTitledBorder(" Tablice: "));
@@ -81,7 +81,7 @@ public class Main {
         copy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try{
-                    dane.add(new CopyData((Data) list.getSelectedValue()));
+                    dane.add(new CopyData( list.getSelectedValue()));
                 } catch(Exception ex) {
                     JOptionPane.showMessageDialog(frame,"Wybierz tablice którą chcesz skopiować");
                 };
@@ -93,7 +93,7 @@ public class Main {
             public void valueChanged(ListSelectionEvent e) {
                 int idx = list.getSelectedIndex();
                 if (idx >= 0) {
-                    adapter.setContent((Data) list.getSelectedValue());
+                    adapter.setContent( list.getSelectedValue());
                 }
             }
         });
