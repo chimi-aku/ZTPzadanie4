@@ -9,16 +9,16 @@ public class RealData implements Data {
 
     @Override
     public int get(int idx) {
-        return 0;
+        return tab[idx];
     }
 
     @Override
     public void set(int idx, int value) {
-
+        tab[idx] = value;
     }
 
     @Override
     public int size() {
-        return 0;
+        return tab.length;
     }
 }
